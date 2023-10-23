@@ -1,5 +1,6 @@
 import pytest
 import source.myFunctions as myFunctions
+import time
 
 
 def test_add():
@@ -20,3 +21,22 @@ def test_divide():
 def test_divide_by_zero():
     with pytest.raises(ValueError):
         myFunctions.divide(10, 0)
+
+
+@pytest.mark.slow
+def test_very_slow():
+    time.sleep(2)
+    result = myFunctions.divide(10, 5)
+    assert result == 2
+
+
+@pytest.mark.skip(reason="Out of scope....")
+def test_add_multi():
+    result = myFunctions.divide(10, 5)
+    assert result == 2
+
+
+@pytest.mark.xfail(reason="Maybe div zero....")
+def test_add_mega():
+    result = myFunctions.divide(1, 0)
+    assert result == 2

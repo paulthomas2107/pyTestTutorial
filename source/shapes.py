@@ -35,3 +35,8 @@ class Rectangle(Shape):
         if not isinstance(other, Rectangle):
             return False
         return self.width == other.width and self.length == other.length
+
+
+class Square(Rectangle):
+    def __init__(self, side_Length):
+        super().__init__(side_Length, side_Length)
